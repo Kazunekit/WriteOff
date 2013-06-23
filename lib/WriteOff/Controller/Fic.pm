@@ -47,8 +47,13 @@ sub view :PathPart('') :Chained('index') :Args(0) {
 		$c->res->content_type('text/plain; charset=utf-8');
 		$c->res->body( $c->stash->{story}->contents );
 	}
-	
+
 	$c->stash->{template} = 'fic/view.tt';
+
+    if ( $c->req->query_keywords eq 'html' ) {
+        $c->stash->{just_html} = 1;
+        $c->detach( $c->view('noWrapperHTML'));
+    }
 }
 
 sub gallery :PathPart('gallery') :Chained('/event/fic') :Args(0) {

@@ -96,4 +96,18 @@ sub wordcount {
 	return $self->get_column('wordcount')->sum;
 }
 
+sub sanitized_search {
+    my ( $self, $search ) = @_;
+    return $self->search($search,
+        {
+            'select'    =>  ['id', 'title', 'contents', 'wordcount', 
+                            \'CASE WHEN event.end > ? THEN "Anonymous" ELSE author END'],
+            'as'        =>  ['ID', 'Title', 'Story', 'Word Count',
+                            'Author'],
+            'join'      =>  [ 'event' ],
+            'bind'      =>  [ $self->now ],
+        },
+    );
+}
+
 1;

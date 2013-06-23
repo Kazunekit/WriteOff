@@ -44,8 +44,20 @@ __PACKAGE__->config(
 	'View::HTML' => {
 		INCLUDE_PATH => [ __PACKAGE__->path_to('root', 'src' ) ],
 	},
+	'View::noWrapperHTML' => {
+		INCLUDE_PATH => [ __PACKAGE__->path_to('root', 'src' ) ],
+	},
 	'View::JSON' => {
 		expose_stash => 'json',
+	},
+    'View::ApiJSON' => {
+        expose_stash => 'apiresponse',
+        pretty => 1,
+    },
+	'View::XML' => {
+		expose_stash => 'apiresponse',
+        no_attr => 1,
+        root_name => 'xml',
 	},
 	'Plugin::Authentication' => {
 		default => {

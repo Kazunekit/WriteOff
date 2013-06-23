@@ -131,7 +131,7 @@ sub do_register :Private {
 			[ 'DBIC_UNIQUE', $c->model('DB::User'), 'email' ]
 		],
 		timezone => [ 'NOT_BLANK', [ 'IN_ARRAY', $c->timezones ] ],
-#		captcha  => [ [ 'EQUAL_TO', 1 ] ],
+		captcha  => [ [ 'EQUAL_TO', 1 ] ],
 	);
 
 	if(!$c->form->has_error) {

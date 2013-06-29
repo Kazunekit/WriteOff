@@ -1,4 +1,3 @@
-[%- IF !just_html %]
 <h1 style="float: left">[% story.title | html %]</h1>
 
 <aside class="font-size-chooser ui-state-highlight ui-corner-all" unselectable="on">
@@ -6,13 +5,13 @@
 	<a class="default" title="Reset font size">A</a>
 	<a class="bigger" title="Increase font size">A</a>
 </aside>
-[%- END %]
+
 <div class="story">
 	[% bb_render( story.contents ).replace( '\n' , "\n\t" ) %]
 	<!-- [% story.wordcount %] words -->
 </div>
 
-[%- IF story.event.fic_gallery_opened && !just_html %]
+[%- IF story.event.fic_gallery_opened %]
 
 <p class="center">
 	[%- storys = story.event.storys_gallery_order %]
